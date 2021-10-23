@@ -1,6 +1,6 @@
 # react-native-scroll-context
 
-Provides a React Native context that makes it easier to inform us about the state of ScrollViews in the app, or to direct them to scroll to a different offset.
+Provides a React Native context that makes it easier to manipulate the scroll offset of a ScrollView in the app. This is mostly intended for when you have a single root ScrollView. This lets deeply nested children know the offset of the ScrollView and lets them change the root ScrollView's offset via a function without passing down props through many levels of children.
 
 Uses a ScrollView from [Native-Base](https://docs.nativebase.io/)
 
@@ -48,7 +48,10 @@ const Button: FunctionComponent<unknown> = () => {
 
   useEffect(() => {
     // scrollOffset is updated every time an onScroll happens for
-    // the ScrollView exported from the package
+    // the ScrollView exported from the package, or every time setScrollOffset is called
+
+    // Here, you can tell the button to perhaps change in background color
+    // when the scrollOffset >= x, etc.
   }, [scrollOffset]);
   return (
     <Pressable
