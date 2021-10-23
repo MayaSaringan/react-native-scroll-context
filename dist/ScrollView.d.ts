@@ -1,3 +1,4 @@
-import { FunctionComponent, PropsWithChildren } from "react";
-declare const Background: FunctionComponent<PropsWithChildren<unknown>>;
-export default Background;
+import { FunctionComponent } from "react";
+import { IScrollViewProps } from "native-base";
+declare const ScrollView: FunctionComponent<IScrollViewProps>;
+export default ScrollView;

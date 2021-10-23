@@ -1,8 +1,8 @@
 import React, { useCallback, useContext, useEffect, useRef, } from "react";
-import { ScrollView } from "react-native";
-import { RootScrollViewContext } from "@providers";
-const Background = ({ children, style }) => {
-    const scrollRef = useRef();
+import { ScrollView as _ScrollView } from "native-base";
+import { RootScrollViewContext } from "./Provider";
+const ScrollView = ({ children, ...restProps }) => {
+    const scrollRef = useRef(null);
     const { setIsScrolled, setScrollOffset, targetScrollOffset } = useContext(RootScrollViewContext);
     const _onScroll = useCallback((evt) => {
         setScrollOffset(evt.nativeEvent.contentOffset.y);
@@ -14,7 +14,7 @@ const Background = ({ children, style }) => {
     useEffect(() => {
         scrollTo(targetScrollOffset);
     }, [targetScrollOffset, scrollTo]);
-    return (React.createElement(ScrollView, { ref: scrollRef, style: [{ flex: 1, height: '100%', width: '100%' }, style], onScroll: _onScroll, scrollEventThrottle: 0, contentContainerStyle: { flexGrow: 1, width: "100%" } }, children));
+    return (React.createElement(_ScrollView, { ref: scrollRef, flex: 1, height: "100%", width: "100%", onScroll: _onScroll, scrollEventThrottle: 0, contentContainerStyle: { flexGrow: 1, width: "100%" }, ...restProps }, children));
 };
-export default Background;
+export default ScrollView;
 //# sourceMappingURL=ScrollView.js.map
